@@ -14,12 +14,21 @@ public class Client implements Serializable {
 	private String id;
 	private String mdp;
 
+	public String getId() {
+		return id;
+	}
+
+	public String getMdp() {
+		return mdp;
+	}
 
 	public Client(String id, String mdp) {
 		super();
 		this.id = id;
 		this.mdp = mdp;
 	}
+
+
 
 
 	}

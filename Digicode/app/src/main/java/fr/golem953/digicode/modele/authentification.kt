@@ -8,7 +8,9 @@ import fr.golem953.digicode.modele.salle.Salle_avec_equipement
 import fr.golem953.digicode.modele.salle.Salle_reunion
 
 class authentification {
-    private var utilValide: List<Client> = listOf(Client("test","test"))
+
+    private var utilValide: List<Client> = listOf(Client("test","test"),Client("admin","admin"))
+    private var utila = Client("test","test")
     private val listeSalle: MutableList<Salle_reunion> = ArrayList()
 
 
@@ -33,25 +35,64 @@ class authentification {
 
     }
 
-    private var lesReservations: List<Reservation> = listOf(Reservation(1, utilValide[0],listeSalle.get(1),"10/02/2025",0))
+    private var lesReservations: List<Reservation> = listOf(Reservation(1, utilValide[0],
+        listeSalle[1],"10/02/2025",0))
 
 
-    fun verifUtilisateur(id :String, mdp :String): Boolean{
+    fun verifUtilisateur(id :String, mdp :String): String{
 
-        var ok = false
+        var ok= "Mauvais identifiants"
+        var fin = false
+        var i = utilValide.listIterator()
 
-        var Utilisateur = Client(id,mdp)
+        var utilisateur = Client(id,mdp)
 
-        Log.i("id+mdp =","$id + $mdp")
+        Log.i("id+mdp =","${utila.id} + ${utila.id}  /${utilisateur.id} + ${utilisateur.mdp}")
 
-        if (utilValide.contains(Utilisateur)) {
+        var utilTemp:Client?=null
+
+        while (!fin && ok != "true"){
+
+            if (i.hasNext()){
+                utilTemp=i.next()
+                if (utilTemp.id == utilisateur.id && utilTemp.mdp == utilisateur.mdp) {
+                    Log.i("id+mdp =","passe")
+
+                    for (uneReserv in lesReservations){
+
+                        if (uneReserv.unClient.id == utilisateur.id){
+                            ok = "true"}
+                        else
+                        {
+                            ok = "Aucune Reservation à ce nom"
+                        }
+                    }
+
+                }
+
+            }else{
+                Log.i("id+mdp =","stop")
+                fin = true
+            }
+
+
+
+
+
+        }
+
+
+
+        /*if (utila.id == utilisateur.id && utila.mdp == utilisateur.mdp) {
+            Log.i("id+mdp =","passe")
+
             for (uneReserv in lesReservations){
-                
-                if (uneReserv.unClient == Utilisateur){
+
+                if (uneReserv.unClient == utilisateur){
                     ok = true}
             }
 
-        }
+        }*/
 
         return ok
 

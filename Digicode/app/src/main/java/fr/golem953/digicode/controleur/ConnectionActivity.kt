@@ -48,7 +48,7 @@ class ConnectionActivity : AppCompatActivity() {
 
 
 
-            val ok = authent.verifUtilisateur(txtID.text.toString(),txtMDP.text.toString())
+            val ok:String = authent.verifUtilisateur(txtID.text.toString(),txtMDP.text.toString())
 
            if(checkBox.isChecked){
                UtilisateurSerializer.enregistrerUtilisateur(utilisateur,this)
@@ -56,7 +56,7 @@ class ConnectionActivity : AppCompatActivity() {
                UtilisateurSerializer.enregistrerUtilisateur(null,this)
            }
 
-           if (ok){
+           if (ok == "true"){
                 Toast.makeText(this.applicationContext,
                     "success ",
                     Toast.LENGTH_LONG
@@ -66,7 +66,7 @@ class ConnectionActivity : AppCompatActivity() {
                 finish()
             }else{
                 Toast.makeText(this.applicationContext,
-                    "Mauvais identifiants",
+                    "$ok",
                     Toast.LENGTH_LONG
                 ).show()
 
