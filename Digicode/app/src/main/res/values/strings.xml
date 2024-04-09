@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Digicode</string>
+    <string name="txtViewDate_code">Choisir votre date:</string>
+    <string name="btnValider_code">Valider votre date</string>
+    <string name="lbltxtViewCodeDonne">Voici votre code pour la journée:</string>
+    <string name="btRetour_code">Retour</string>
+    <string name="lbl_id">identifiant : </string>
+    <string name="lbl_password">Mot de passe : </string>
+    <string name="checkBoxConnection">Se souvenir de moi</string>
+    <string name="btValider_connection">Valider</string>
+    <string name="bt_deconnecter_date">Déconnectez-vous</string>
+
+
+</resources>
