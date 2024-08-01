@@ -8,8 +8,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import fr.golem953.digicode.R
-import fr.golem953.digicode.modele.Serializer.UtilisateurSerializer
-import fr.golem953.digicode.modele.authentification
+import fr.golem953.digicode.repository.UtilisateurSerializer
+import fr.golem953.digicode.modele.Authentification
 
 class ConnectionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,9 +32,9 @@ class ConnectionActivity : AppCompatActivity() {
         var utilisateur: Array<String>
 
 
+        val bundle =intent.extras
 
-
-        val authent = authentification()
+        val authent = Authentification()
 
        btValider.setOnClickListener(){
 
@@ -43,6 +43,8 @@ class ConnectionActivity : AppCompatActivity() {
                "${txtID.text} + ${txtMDP.text}",
                Toast.LENGTH_LONG
            ).show()
+
+           var ident = txtID.text.toString()
 
 
 
@@ -61,9 +63,11 @@ class ConnectionActivity : AppCompatActivity() {
                     "success ",
                     Toast.LENGTH_LONG
                 ).show()
-                val  intention = Intent(this,DateCodeActivity::class.java)
-                startActivity(intention)
-                finish()
+
+               val  intention = Intent(this,DateCodeActivity::class.java)
+               intention.putExtra("identifiant",ident)
+               startActivity(intention)
+               finish()
             }else{
                 Toast.makeText(this.applicationContext,
                     "$ok",
